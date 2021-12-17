@@ -12,6 +12,6 @@ backend sample code
 
 练手项目 antd 2.x + vue 3.0 + vue-router
 
-建议是用 yarn 安装项目依赖
-运行： yarn run vite
-编译： yarn build 
+建议是用 yarn 安装项目依赖 
+运行： yarn run vite 
+编译： yarn build  
