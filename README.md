@@ -10,7 +10,7 @@ backend sample code
 ### antdv https://2x.antdv.com/components/overview/
 
 
-练手项目，采用 antd 2.x + vue 3.0 + vue-router制作一个后端管理系统的模板
+练手项目，采用 antd 2.x + vue 3.0 + vue-router制作一个后端管理系统的模板  
 
 ### 使用方法
 ```
