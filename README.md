@@ -10,8 +10,12 @@ backend sample code
 ### antdv https://2x.antdv.com/components/overview/
 
 
-练手项目 antd 2.x + vue 3.0 + vue-router
+练手项目，采用 antd 2.x + vue 3.0 + vue-router制作一个后端管理系统的模板
 
-建议是用 yarn 安装项目依赖
-运行： yarn run vite
-编译： yarn build 
+### 使用方法
+```
+# git clone git@github.com:madwolfcrazy/blue-sunset.git
+# cd blue-sunset
+# yarn
+# yarn run vite  /* 运行 */
+```
