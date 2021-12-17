@@ -1,0 +1,64 @@
+#app {
+  height: 100%;
+}
+
+.ant-layout {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    min-height: 0;
+    background: #f0f2f5;
+  }
+
+#main-content {
+  position: relative;
+  margin: 24px;
+  background-color: #fff;
+}
+
+.mr-10 {
+  margin-right:10px;
+}
+.sider-fixed-stuff {
+  width:200px;
+  overflow: hidden;
+}
+.layout-body {
+  .trigger {
+    display: flex
+  }
+  .header {
+    display: flex;
+    padding: 0 16px;
+    height: 50px;
+    line-height:50px;
+    background-color: white;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+    .header-bow {
+      flex: 1
+    }
+    .header-right {
+      justify-content: flex-end;
+      align-items: center;
+      display: flex;
+      font-size: 16px
+    }
+  }
+}
+.ant-layout {
+  .ant-layout-sider {
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      margin-top: -0.1px;
+      padding-top: 0.1px;
+    }
+  }
+}
+.ant-layout-footer {
+  flex: 0 0 auto;
+
+}
