@@ -19,7 +19,7 @@ export default defineComponent({
     const tmpTabs = [
       {name: 'AAA', fullPath: '/aaaa', meta:{title: 'AAA'}},
       {name: 'BBB', fullPath: '/bbbb', meta:{title: 'BBB'}},
-      {name: 'CHIJ', fullPath: '/chi-ij', meta:{title: 'chi ij'}},
+      {name: 'CHI ij', fullPath: '/chi-ij', meta:{title: 'BBB'}},
     ]
     const actions = {
       close: tabsStore.close,
@@ -36,6 +36,7 @@ export default defineComponent({
       page: tabsStore,
       tmpTabs,
       ...actions,
+      tmpCurrentTab: "/bbbb",
       computeOpened
     };
   },
@@ -55,7 +56,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    const el = document.querySelectorAll(".OT-multiple-page-sort .el-tabs__nav")[0];
+    const el = document.querySelectorAll(".OT-tabs-nav-page-sort .el-tabs__nav")[0];
     // Sortable.create(el, {
     //   onEnd: (evt) => {
     //     const { oldIndex, newIndex } = evt;
@@ -152,59 +153,49 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.OT-multiple-page-control-group {
+.OT-tabs-nav-group {
   width: 100%;
-  display: flex;
-  margin-top: 6px;
-  .OT-multiple-page-control-content {
-    flex: 1;
+  margin-top: 3px;
+  padding-top: 3px;
+  background-color: white;
+  .OT-tabs-nav-content {
     overflow-x: auto;
+    margin-bottom: -1px;
   }
-  .OT-multiple-page-control-btn {
-    flex: 0;
+  .OT-tabs-nav-btn {
+    float: right;
+  }
+  .OT-tabs-nav-list {
+    margin: 0 0 16px 0;
+    padding-left: 16px;
+    border-bottom: 1px solid #f0f0f0;
   }
 }
-.OT-multiple-page-control-group {
+.OT-tabs-nav-group {
   .ant-tabs-bar {
     margin: 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none;
   }
   .ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-nav {
     .ant-tabs-tab {
-      margin-right: 0;
-      border-right: 0;
-      &:first-of-type {
-        border-top-left-radius: 2px;
-      }
-      &:last-of-type {
-        border-top-right-radius: 2px;
-        border-right: 1px;
-      }
       &:not(.ant-tabs-tab-active) {
         color: #666;
       }
+      margin-right:3px;
     }
-    .ant-tabs-tab-active {
-      border-bottom-color: #fff;
+    .ant-tabs-tab:hover {
+      color: #1890ff;
     }
   }
   .ant-tabs-close-x {
-    display: none;
-  }
-  .ant-tabs-tab {
-    &:hover {
-      .ant-tabs-close-x {
-        display: initial;
-      }
-    }
+    margin-left: 8px;
   }
   .ant-tabs-tab-active {
     .ant-tabs-close-x {
       display: initial;
     }
   }
-  .OT-multiple-page-control-btn {
-    display: flex;
+  .OT-tabs-nav-btn {
     .ant-btn {
       display: flex;
       align-items: center;
@@ -229,54 +220,61 @@ export default defineComponent({
     border-bottom: 0;
   }
 }
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab .ant-tabs-close-x {
+  margin-left: 8px;
+}
 </style>
 <template>
-  <div class="OT-multiple-page-control-group">
-    <div class="OT-multiple-page-control-content">
-      <div class="OT-multiple-page-control-content-inner">
-        <a-tabs
-          class="OT-multiple-page-control OT-multiple-page-sort"
-          :active-key="page.getCurrent"
-          type="editable-card"
-          hide-add
-          @tabClick="handleClick"
-          @edit="handleTabEdit"
-          @contextmenu="handleContextmenu"
-        >
-          <a-tab-pane
-            v-for="item in tmpTabs"
-            :key="item.fullPath"
-            :tab="item.meta?.title || '未命名'"
-            :name="item.fullPath"
-            :closable="isTabClosable(item)"
-          />
-        </a-tabs>
+  <div class="OT-tabs-nav-group">
+    <div class="OT-tabs-nav-list">
+      <div class="OT-tabs-nav-btn">
+        <a-dropdown-button class="btn-ddd" size="default" split-button @click="closeAll">
+          <template #icon><MoreOutlined /></template>
+          <template #overlay>
+            <a-menu @click="(command) => handleControlItemClick(command)">
+              <a-menu-item key="left">
+                <ArrowLeftOutlined />
+                关闭左侧
+              </a-menu-item>
+              <a-menu-item key="right">
+                <ArrowRightOutlined />
+                关闭右侧
+              </a-menu-item>
+              <a-menu-item key="other">
+                <ClockCircleOutlined />
+                关闭其它
+              </a-menu-item>
+              <a-menu-item key="all">
+                <CloseCircleOutlined />
+                全部关闭
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown-button>
       </div>
-    </div>
-    <div class="OT-multiple-page-control-btn">
-      <a-dropdown-button class="btn-ddd" size="default" split-button @click="closeAll">
-        <template #icon><MoreOutlined /></template>
-        <template #overlay>
-          <a-menu @click="(command) => handleControlItemClick(command)">
-            <a-menu-item key="left">
-              <ArrowLeftOutlined />
-              关闭左侧
-            </a-menu-item>
-            <a-menu-item key="right">
-              <ArrowRightOutlined />
-              关闭右侧
-            </a-menu-item>
-            <a-menu-item key="other">
-              <ClockCircleOutlined />
-              关闭其它
-            </a-menu-item>
-            <a-menu-item key="all">
-              <CloseCircleOutlined />
-              全部关闭
-            </a-menu-item>
-          </a-menu>
-        </template>
-      </a-dropdown-button>
+      <div class="OT-tabs-nav-content">
+        <div class="OT-tabs-nav-content-inner">
+          <a-tabs
+            class="OT-tabs-nav OT-tabs-nav-page-sort"
+            :active-key-bak="page.getCurrent"
+            :active-key="tmpCurrentTab"
+            type="editable-card"
+            hide-add
+            @tabClick="handleClick"
+            @edit="handleTabEdit"
+            @contextmenu="handleContextmenu"
+          >
+            <a-tab-pane
+              v-for="item in tmpTabs"
+              :key="item.fullPath"
+              :tab="item.meta?.title || '未命名'"
+              :name="item.fullPath"
+              :closable="isTabClosable(item)"
+            />
+          </a-tabs>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
