@@ -152,7 +152,7 @@ export default defineComponent({
   }
 });
 </script>
-<style lang="scss">
+<stylex lang="scss">
 .OT-tabs-nav-group {
   width: 100%;
   margin-top: 3px;
@@ -223,58 +223,58 @@ export default defineComponent({
 .ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab .ant-tabs-close-x {
   margin-left: 8px;
 }
+</stylex>
+<style>
+.tabs-page-wrap {margin:3px 0 0 0; padding-top: 6px;background-color: white;}
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-nav-wrap {padding-left: 16px;}
+.tabs-page-wrap .op-btns button {border: none;}
 </style>
 <template>
-  <div class="OT-tabs-nav-group">
-    <div class="OT-tabs-nav-list">
-      <div class="OT-tabs-nav-btn">
-        <a-dropdown-button class="btn-ddd" size="default" split-button @click="closeAll">
-          <template #icon><MoreOutlined /></template>
-          <template #overlay>
-            <a-menu @click="(command) => handleControlItemClick(command)">
-              <a-menu-item key="left">
-                <ArrowLeftOutlined />
-                关闭左侧
-              </a-menu-item>
-              <a-menu-item key="right">
-                <ArrowRightOutlined />
-                关闭右侧
-              </a-menu-item>
-              <a-menu-item key="other">
-                <ClockCircleOutlined />
-                关闭其它
-              </a-menu-item>
-              <a-menu-item key="all">
-                <CloseCircleOutlined />
-                全部关闭
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown-button>
-      </div>
-      <div class="OT-tabs-nav-content">
-        <div class="OT-tabs-nav-content-inner">
-          <a-tabs
-            class="OT-tabs-nav OT-tabs-nav-page-sort"
-            :active-key-bak="page.getCurrent"
-            :active-key="tmpCurrentTab"
-            type="editable-card"
-            hide-add
-            @tabClick="handleClick"
-            @edit="handleTabEdit"
-            @contextmenu="handleContextmenu"
-          >
-            <a-tab-pane
-              v-for="item in tmpTabs"
-              :key="item.fullPath"
-              :tab="item.meta?.title || '未命名'"
-              :name="item.fullPath"
-              :closable="isTabClosable(item)"
-            />
-          </a-tabs>
-        </div>
-      </div>
+    <div class="tabs-page-wrap">
+        <a-tabs
+          :active-key-bak="page.getCurrent"
+          :active-key="tmpCurrentTab"
+          type="editable-card"
+          hide-add
+          @tabClick="handleClick"
+          @edit="handleTabEdit"
+          @contextmenu="handleContextmenu"
+        >
 
+          <a-tab-pane
+            v-for="item in tmpTabs"
+            :key="item.fullPath"
+            :tab="item.meta?.title || '未命名'"
+            :name="item.fullPath"
+            :closable="isTabClosable(item)"
+          />
+          <template #tabBarExtraContent>
+          <div class="op-btns">
+            <a-dropdown-button class="btn-ddd" size="default" split-button @click="closeAll">
+              <template #icon><MoreOutlined /></template>
+              <template #overlay>
+                <a-menu @click="(command) => handleControlItemClick(command)">
+                  <a-menu-item key="left">
+                    <ArrowLeftOutlined />
+                    关闭左侧
+                  </a-menu-item>
+                  <a-menu-item key="right">
+                    <ArrowRightOutlined />
+                    关闭右侧
+                  </a-menu-item>
+                  <a-menu-item key="other">
+                    <ClockCircleOutlined />
+                    关闭其它
+                  </a-menu-item>
+                  <a-menu-item key="all">
+                    <CloseCircleOutlined />
+                    全部关闭
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown-button>
+          </div>
+          </template>
+        </a-tabs>
     </div>
-  </div>
 </template>
