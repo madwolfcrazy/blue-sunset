@@ -17,6 +17,8 @@ export default ({ command, mode }) => {
   );
   const prodMock = true;
   return {
+    // 编译目标目录
+    base: process.env.NODE_ENV === "production" ? "/html/" : VITE_PUBLIC_PATH,
     plugins: [
     vue({
     template: {
@@ -32,6 +34,7 @@ export default ({ command, mode }) => {
   server: {
     // 是否开启 https
     https: false,
+    root,
     /**
      * 端口号
      * @default 3000
