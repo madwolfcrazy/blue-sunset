@@ -1,16 +1,15 @@
 <template>
   <a-layout class="layout-wrap">
-    <div class="sider-fixed-stuff"></div>
-    <a-layout-sider class="sider-fixed" v-model="collapsed" :trigger="null" collapsible>
+    <a-layout-sider :collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu theme="dark" mode="inline" v-model="selectedKeys">
         <a-menu-item key="1">
           <user-outlined />
-          <router-link to="/gen-license"><span>生成License</span></router-link>
+          <span><router-link to="/gen-license">生成License</router-link></span>
         </a-menu-item>
         <a-menu-item key="2">
           <table-outlined />
-          <router-link to="/license-list"><span>许可证列表</span></router-link>
+          <span><router-link to="/license-list">许可证列表</router-link></span>
         </a-menu-item>
         <a-menu-item key="3" @click="logout">
           <logout-outlined />
@@ -92,7 +91,9 @@ export default defineComponent({
   cursor: pointer;
   transition: color 0.3s;
 }
-
+.ant-layout-sider {
+  min-height: 100vh;
+}
 .layout-wrap .trigger:hover {
   color: #1890ff;
 }
@@ -107,17 +108,8 @@ export default defineComponent({
   background: #fff;
 }
 .anticon {margin-right:10px;}
-.sider-fixed {
-  position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    height: 100%;
-    overflow: auto;
-    overflow-x: hidden;
-    box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
-}
 .layout-page-container-wrap {
   margin:-24px -24px 0;
 }
+.ant-menu-item a {color: white;}
 </style>
