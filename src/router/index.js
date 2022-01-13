@@ -4,6 +4,7 @@ import {
 } from "vue-router";
 import Layout from '@/layout/index.vue'
 import {SessionStorage} from '@/store/localstorage'
+import {useTabsStore} from '@/store/tabs'
 
 const routes = [
   {
@@ -13,7 +14,7 @@ const routes = [
     redirect: '/home',
     meta: {
       title: "",
-      showLink: true,
+      tabbed: true,
       rank: 2
     },
     children: [
@@ -22,8 +23,8 @@ const routes = [
         name: "Home",
         component: () => import("@/views/home/index.vue"),
         meta: {
-          title: "D15设备许可证管理后台",
-          showLink: true,
+          title: "许可证管理后台",
+          tabbed: true,
           rank: 1
         },
       },
@@ -32,8 +33,8 @@ const routes = [
         name: "GenLicense",
         component: () => import("@/views/gen-license/index.vue"),
         meta: {
-          title: "生成D15 license",
-          showLink: true,
+          title: "生成 license",
+          tabbed: true,
           rank: 1
         },
       },
@@ -43,7 +44,7 @@ const routes = [
         component: () => import("@/views/license_list/index.vue"),
         meta: {
           title: "许可证列表",
-          showLink: true,
+          tabbed: true,
           rank: 1
         },
       },
@@ -55,6 +56,7 @@ const routes = [
     component: () => import("@/views/login/index.vue"),
     meta: {
       title: "登录",
+      tabbed: false
     },
   }
 ]
@@ -78,6 +80,24 @@ router.beforeEach((to, _from, next) => {
     }
   }
   next()
+})
+
+// 跳转后
+router.afterEach((to, from) => {
+  //
+  let saveFlag = true
+  if(to.meta.tabbed) {
+    let tabsStore = useTabsStore()
+    tabsStore.opened.forEach( item => {
+      if(item.fullPath == to.fullPath) {
+        saveFlag = false
+      }
+    })
+    if(saveFlag) {
+      tabsStore.add({tag: {name: to.name, meta: to.meta}, params: to.params, fullPath: to.fullPath})
+    }
+  }
+  //
 })
 
 export default router;

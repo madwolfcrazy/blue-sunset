@@ -17,14 +17,7 @@ export const useTabsStore = defineStore({
     pool: [],
     // 当前显示的多页面列表
     opened: [
-      {
-        name: "index",
-        fullPath: "/index",
-        meta: {
-          title: "首页",
-          auth: false
-        }
-      }
+      
     ],
     // 已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
     openedLoaded: false,
@@ -163,6 +156,8 @@ export const useTabsStore = defineStore({
       if (isKeepAlive(newTag)) {
         this.keepAlivePush(tag.name);
       }
+      // 设置当前的页面
+      this.currentSet(fullPath);
       // 持久化
       await this.opened2db();
     },

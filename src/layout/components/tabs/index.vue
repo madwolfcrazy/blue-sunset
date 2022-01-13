@@ -16,11 +16,6 @@ export default defineComponent({
   },
   setup() {
     const tabsStore = useTabsStore();
-    const tmpTabs = [
-      {name: 'AAA', fullPath: '/aaaa', meta:{title: 'AAA'}},
-      {name: 'BBB', fullPath: '/bbbb', meta:{title: 'BBB'}},
-      {name: 'CHI ij', fullPath: '/chi-ij', meta:{title: 'BBB'}},
-    ]
     const actions = {
       close: tabsStore.close,
       closeLeft: tabsStore.closeLeft,
@@ -32,11 +27,13 @@ export default defineComponent({
     const computeOpened = computed(() => {
       return tabsStore.getOpened;
     });
+    const currentTab = computed( () => {
+      return tabsStore.getCurrent
+    })
     return {
       page: tabsStore,
-      tmpTabs,
       ...actions,
-      tmpCurrentTab: "/bbbb",
+      currentTab,
       computeOpened
     };
   },
@@ -161,7 +158,7 @@ export default defineComponent({
     <div class="tabs-page-wrap">
         <a-tabs
           :active-key-bak="page.getCurrent"
-          :active-key="tmpCurrentTab"
+          :active-key="currentTab"
           type="editable-card"
           hide-add
           @tabClick="handleClick"
@@ -170,7 +167,7 @@ export default defineComponent({
         >
 
           <a-tab-pane
-            v-for="item in tmpTabs"
+            v-for="item in computeOpened"
             :key="item.fullPath"
             :tab="item.meta?.title || '未命名'"
             :name="item.fullPath"
