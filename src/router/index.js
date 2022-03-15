@@ -91,6 +91,7 @@ router.afterEach((to, from) => {
     tabsStore.opened.forEach( item => {
       if(item.fullPath == to.fullPath) {
         saveFlag = false
+        tabsStore.currentSet(to.fullPath)
       }
     })
     if(saveFlag) {
