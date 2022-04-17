@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>生成D15 license</h2>
+    <h2>生成license</h2>
     <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
       <a-form-item label="IP">
         <a-input v-model:value="formState.ip" placeholder="IP" />
@@ -14,8 +14,8 @@
       <a-form-item label="密码">
         <a-input v-model:value="formState.pwd" placeholder="密码" />
       </a-form-item>
-      <a-form-item label="D15 SN">
-        <a-input v-model:value="formState.sn" placeholder="D15 SN" />
+      <a-form-item label="SN">
+        <a-input v-model:value="formState.sn" placeholder="SN" />
       </a-form-item>
       <a-form-item label="版本">
         <a-select

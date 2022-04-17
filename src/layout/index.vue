@@ -26,7 +26,7 @@
         />
         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
         <div class="header-bow">
-            <label>AAA</label>
+            <label>Short Left</label>
         </div>
         <div class="header-right header-buttons">
           <UserOutlined /> username

@@ -10,7 +10,7 @@ const columns = [
     key: 'client_name',
   },
   {
-    title: 'D15 SN',
+    title: 'SN',
     dataIndex: 'sn',
     key: 'sn',
   },

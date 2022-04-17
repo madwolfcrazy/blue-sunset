@@ -48,6 +48,9 @@ export default ({ command, mode }) => {
     alias: {
       '@': pathResolve('src')
     }
+  },
+  build: {
+    chunkSizeWarningLimit: 2000
   }
 }
 }
