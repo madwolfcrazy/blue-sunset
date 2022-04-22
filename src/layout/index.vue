@@ -36,8 +36,8 @@
       <a-layout-content
         id="main-content"
       >
-        <div class="layout-page-container-wrap">
-          <router-view></router-view>
+        <div class="layout-page-container-wrap-x">
+            <router-view></router-view>
         </div>
       </a-layout-content>
       <a-layout-footer class="fs-framework-footer">

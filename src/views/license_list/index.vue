@@ -1,13 +1,25 @@
 <template>
-  <a-table :dataSource="dataSource" :columns="columns" :row-selection="rowSelection" />
+  <a-table :dataSource="dataSource" :columns="columns" :row-selection="rowSelection">
+  <template #customTitle>
+      <span>
+        客户名称
+        <a-tooltip title="这是一个图标，鼠标移到这里显示该提示">
+          <QuestionCircleOutlined />
+        </a-tooltip>
+      </span>
+    </template>
+  </a-table>
 </template>
 <script setup>
+import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 const dataSource = []
 const columns = [
   {
-    title: '客户名称',
     dataIndex: 'client_name',
     key: 'client_name',
+    slots: {
+            title: 'customTitle',
+        },
   },
   {
     title: 'SN',
