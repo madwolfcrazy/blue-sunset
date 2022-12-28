@@ -1,9 +1,16 @@
 <template>
+  <div class="login-bg">
+    <div class="form-wrap">
   <a-row>
-   <a-col :span="5" :offset="10">
-     <div class="form-wrap">
+    <a-col :md="{span:8, offset: 8}">
+      <h2 class="login-title">XXXX 系统 <span class="login-version">beta 0.1</span></h2>
+    </a-col>
+  </a-row>
+  <a-row>
+   <a-col :md="{span:6, offset:9}" :xs="{span: 24}">
+     <div class="">
        <a-form :label-col="{span:4}" :model="formState">
-         <h2>系统登录</h2>
+
          <a-form-item label="">
           <a-input v-model:value="formState.username" size="large" placeholder="">
             <template #prefix>
@@ -25,6 +32,8 @@
     </div>
    </a-col>
  </a-row>
+</div>
+</div>
 </template>
 <script setup>
 import {

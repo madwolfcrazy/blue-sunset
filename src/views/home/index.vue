@@ -15,7 +15,17 @@
     <a-step title="In Progress" sub-title="Left 00:00:08" description="This is a description." />
     <a-step title="Waiting" description="This is a description." />
   </a-steps>
+  <a-space direction="vertical">
+    <a-date-picker v-model:value="value1" />
+    <a-month-picker v-model:value="value2" placeholder="Select month" />
+    <a-range-picker v-model:value="value3" />
+    <a-week-picker v-model:value="value4" placeholder="Select week" />
+  </a-space>
 </template>
 <script setup>
 import {ref, reactive} from 'vue'
+const value1 = ref()
+const value2 = ref()
+const value3 = ref()
+const value4 = ref()
 </script>
