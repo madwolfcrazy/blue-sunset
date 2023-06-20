@@ -3,6 +3,18 @@
     <a-layout-sider :collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu theme="dark" mode="inline" v-model="selectedKeys">
+        <a-sub-menu key="sub2">
+          <template #icon>
+            <menu-outlined />
+          </template>
+          <template #title>Navigation Two</template>
+          <a-menu-item key="5">Option 5</a-menu-item>
+          <a-menu-item key="6">Option 6</a-menu-item>
+          <a-sub-menu key="sub3" title="Submenu">
+            <a-menu-item key="7">Option 7</a-menu-item>
+            <a-menu-item key="8">Option 8</a-menu-item>
+          </a-sub-menu>
+        </a-sub-menu>
         <a-menu-item key="1">
           <user-outlined />
           <span><router-link to="/gen-license">生成License</router-link></span>
@@ -46,42 +58,30 @@
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import {
   UserOutlined,
   TableOutlined,
   UploadOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  MenuOutlined,
   LogoutOutlined
 } from '@ant-design/icons-vue';
 import VnamTabs from './components/tabs/index.vue'
 import { defineComponent, ref } from 'vue';
 import {useRouter} from 'vue-router'
 import {SessionStorage} from '@/store/localstorage'
-export default defineComponent({
-  components: {
-    UserOutlined,
-    TableOutlined,
-    UploadOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-    LogoutOutlined,
-    VnamTabs
-  },
-  setup() {
-    const router = useRouter()
-    return {
-      //
-      selectedKeys: ref<string[]>(['1']),
-      collapsed: ref<boolean>(false),
-      logout: () => {
-        SessionStorage.remove('info')
-        router.push('/login')
-      }
-    };
-  },
-});
+
+const router = useRouter()
+//
+const selectedKeys =  ref<string[]>(['1'])
+const collapsed =  ref<boolean>(false)
+
+const logout =  () => {
+  SessionStorage.remove('info')
+  router.push('/login')
+}
 </script>
 <style>
 .layout-wrap .trigger {

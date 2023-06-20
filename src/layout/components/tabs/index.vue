@@ -173,7 +173,7 @@ export default defineComponent({
             :name="item.fullPath"
             :closable="isTabClosable(item)"
           />
-          <template #tabBarExtraContent>
+          <template #rightExtra>
           <div class="op-btns">
             <a-dropdown-button class="btn-ddd" size="default" split-button @click="closeAll">
               <template #icon><MoreOutlined /></template>

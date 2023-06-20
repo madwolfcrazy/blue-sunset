@@ -166,10 +166,12 @@ class EnclosureHttp {
         if (typeof this.beforeResponseCallback === "function") {
           this.beforeResponseCallback(response);
           this.beforeResponseCallback = undefined;
+          NProgress.done();
           return response.data;
         }
         if (EnclosureHttp.initConfig.beforeResponseCallback) {
           EnclosureHttp.initConfig.beforeResponseCallback(response);
+          NProgress.done();
           return response.data;
         }
         NProgress.done();
